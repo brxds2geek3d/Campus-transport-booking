@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "PZGDr7w/NJY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\admin\\OneDrive\\Documents\\UON\\CampusTransportSystem\\Backend\\Backend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.2\\microsoft.aspnetcore.openapi.10.0.2.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\system.configuration.configurationmanager\\10.0.3\\system.configuration.configurationmanager.10.0.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\system.data.oledb\\10.0.3\\system.data.oledb.10.0.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\system.diagnostics.performancecounter\\10.0.3\\system.diagnostics.performancecounter.10.0.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.3\\system.security.cryptography.protecteddata.10.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

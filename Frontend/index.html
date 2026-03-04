@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Transport System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h1>Campus Transport System</h1>
+    <p id="welcome-message"></p>
+
+    <nav>
+        <a href="login.html">Login</a> |
+        <a href="bookings.html">View Schedules</a>
+    </nav>
+
+    <p>Welcome to the University Campus Transport Booking System.</p>
+
+    <hr> <h2>Registered Users</h2>
+    <div id="user-container">
+        <p>Loading users from database...</p>
+    </div>
+
+    <h2>Available Bus Trips</h2>
+<div id="schedule-container">Loading trips...</div>
+
+    <script src="js/app.js"></script>
+<button onclick="testBooking()">Test Booking (Seat A12)</button>
+<script>
+window.onload = () => {
+    const userName = localStorage.getItem("userName");
+
+    if (!userName) {
+        alert("Please log in first!");
+        window.location.href = "login.html";
+        return;
+    }
+
+    document.getElementById("welcome-message").innerText = `Welcome, ${userName}!`;
+
+    // Load users
+    loadUsers();
+
+    // Load schedules
+    loadSchedules();
+};
+</script>
+<script>
+    window.onload = () => {
+        loadUsers();
+    };
+</script>
+</body>
+</html>

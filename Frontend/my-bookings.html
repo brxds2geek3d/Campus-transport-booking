@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bookings - Campus Transport</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <h1>My Reservations</h1>
+    
+    <nav style="margin-bottom: 20px;">
+        <a href="index.html">Home</a> | 
+        <a href="bookings.html">New Booking</a> |
+        <button onclick="logout()" style="background:none; border:none; color:blue; cursor:pointer; text-decoration:underline;">Logout</button>
+    </nav>
+
+    <table border="1" width="100%" id="my-bookings-table">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Route</th>
+                <th>Bus Plate</th>
+                <th>Departure</th>
+                <th>Status</th>
+                <th>Action</th> </tr>
+        </thead>
+        <tbody id="my-bookings-body">
+            <tr><td colspan="6">Loading your trips...</td></tr>
+        </tbody>
+    </table>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Security: Ensure user is logged in
+        window.onload = () => {
+            if (!localStorage.getItem("currentUserID")) {
+                window.location.href = "login.html";
+            } else {
+                loadMyBookings();
+            }
+        };
+    </script>
+</body>
+</html>

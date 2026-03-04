@@ -1,0 +1,108 @@
+<script>
+    // 1. SECURITY CHECK - ALWAYS FIRST
+   
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Campus Transport</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-nav { background: #333; padding: 10px; margin-bottom: 20px; }
+        .admin-nav button { margin-right: 10px; padding: 8px 15px; cursor: pointer; }
+        .logout-btn { background-color: #d9534f; color: white; border: none; float: right; }
+        .data-section { display: none; }
+        .active { display: block; }
+    </style>
+</head>
+<body>
+
+    <h1>Administrator Control Panel</h1>
+
+    <div class="admin-nav">
+        <button onclick="showSection('bookings-view')">All Bookings</button>
+        <button onclick="showSection('buses-view')">Manage Buses</button>
+        <button onclick="showSection('users-view')">System Users</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <div id="bookings-view" class="data-section active">
+        <h2>System-Wide Bookings</h2>
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Route</th>
+                    <th>Bus</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="all-bookings-table"></tbody>
+        </table>
+    </div>
+
+    <div id="buses-view" class="data-section">
+        <h2>Bus Fleet Management</h2>
+        <div id="bus-list"></div>
+        <hr>
+        <h3>Add New Bus</h3>
+        <input type="text" id="newPlate" placeholder="Plate Number">
+        <input type="number" id="newCapacity" placeholder="Capacity">
+        <button onclick="addNewBus()">Register Bus</button>
+    </div>
+
+    <div id="users-view" class="data-section">
+        <h2>System Users</h2>
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody id="all-users-table"></tbody>
+        </table>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        // 1. SECURITY CHECK (Runs before the page even finishes loading)
+        if (localStorage.getItem("userRole") !== "Admin") {
+            alert("Unauthorized Access! Redirecting to login...");
+            window.location.href = "login.html";
+        }
+
+        // 2. TAB SWITCHING LOGIC
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.data-section').forEach(s => s.classList.remove('active'));
+            // Show the clicked section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Trigger the data load from app.js based on the active tab
+            if(sectionId === 'bookings-view') {
+                if(typeof loadAllBookings === 'function') loadAllBookings();
+            }
+            if(sectionId === 'buses-view') {
+                if(typeof loadBusFleet === 'function') loadBusFleet();
+            }
+            if(sectionId === 'users-view') {
+                // We will need to write this function in app.js next!
+                if(typeof loadSystemUsers === 'function') loadSystemUsers(); 
+            }
+        }
+
+        // 3. LOGOUT LOGIC
+        function logout() {
+            localStorage.clear(); // Wipes the user role so they can't get back in
+            window.location.href = "login.html";
+        }
+        
+        // Start by showing the bookings view when the page opens
+        window.onload = () => showSection('bookings-view');
+    </script>
+</body>
+</html>

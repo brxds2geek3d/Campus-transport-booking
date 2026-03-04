@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Schedules - Campus Transport</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="header-container">
+        <h2>Available Bus Schedules</h2>
+        <a href="index.html">← Back to Dashboard</a>
+    </div>
+    <nav style="display: flex; justify-content: space-between; padding: 10px; background: #f4f4f4;">
+    <span>Welcome to Campus Transport</span>
+    <button onclick="logoutUser()" style="background-color: #ff4444; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 5px;">
+        Logout
+    </button>
+</nav>
+
+    <table border="1" id="schedule-table" width="100%">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Distance</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Plate</th>
+                <th>Seats</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="schedule-table-body"></tbody>
+    </table>
+    <script>
+        // Security check: Ensure user is logged in before seeing schedules
+        window.onload = () => {
+            if (!localStorage.getItem("currentUserID")) {
+                alert("Please login to view schedules.");
+                window.location.href = "login.html";
+            } else {
+                loadSchedules();
+            }
+        };
+    </script>
+
+</body>
+<script src="js/app.js"></script>
+</html>
